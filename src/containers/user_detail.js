@@ -2,26 +2,29 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
 class UserDetail extends Component {
-    render () {
-        const {user} = this.props
-        if(!user){
-          return  <div>Selectionnez un utilisateur pour démarrer</div>
+    render() {
+        const { myActiveUser } = this.props;
+        if(!myActiveUser){
+            return <div>Slectionner un user pour démarrer</div>
         }
         return (
             <div>
-             <h3>Detail de : {user.name}</h3>
-             <li>ID : {user.id}</li>
-             <li>Role : {user.role} </li>
-             <li>Actif : {user.active} </li>
+                <h3>Detail de {myActiveUser.name}</h3>
+                <ul>
+                    <li>Id : {myActiveUser.id}</li>
+                    <li>Role : {myActiveUser.role}</li>
+                    <li>Actif : {myActiveUser.active}</li>
+                </ul>
             </div>
         )
     }
 }
 
- const mapStateToProps = (state) => {
-  return {
-    user: state.activeUser
-  }
+const mapStateToProps = (state) => {
+    return {
+        myActiveUser: state.activeUser
+    }
 }
 
-export default connect(mapStateToProps)(UserDetail)
+
+export default connect(mapStateToProps)(UserDetail);

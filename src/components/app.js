@@ -5,7 +5,10 @@ import UserDetail from '../containers/user_detail'
 export default class App extends Component {
   render() {
     return (
-      <div><UserList/><UserDetail/></div>
+      <div>
+        <UserList />
+        <UserDetail/>
+      </div>
     );
   }
 }

@@ -1,40 +1,38 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { selectUser } from '../actions/index'
-import { bindActionCreators } from 'redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { selectUserAction } from '../actions/index';
+import { bindActionCreators } from 'redux';
 
 class UserList extends Component {
- 
-    render () {
+    render() {
         return (
-        <div>
-            <ul className="col-md-4"> 
-                {
-                    this.props.myUsers.map((user) => {
-                        return (
-                            <li className="list-group-item"
-                             key={user.name} onClick={() => this.props.selectUser(user)}>
-                            {user.name}
-                         </li>
-                         );
-                    })
-                }
-           </ul>
-        </div>
+            <div className="row">
+                <ul className="col-md-4">
+                    {
+                        this.props.myUserList.map((user) => {
+                            return (
+                                <li className="list-group-item"
+                                    key={user.id}
+                                    onClick={() => this.props.selectUser(user)}>
+                                    {user.name}
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+            </div>
         )
     }
-
-    
 }
 
-function  mapStateToProps(state) {    
+const mapStateToProps = (state) => {
     return {
-        myUsers: state.users
+        myUserList: state.userList
     }
 }
 
-function mapDispatchToProps(dispatch){
-    return bindActionCreators({selectUser:selectUser},dispatch)
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ selectUser: selectUserAction }, dispatch);
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(UserList)
+export default connect(mapStateToProps, mapDispatchToProps)(UserList);
